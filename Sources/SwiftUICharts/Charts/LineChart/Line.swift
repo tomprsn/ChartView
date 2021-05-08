@@ -139,7 +139,6 @@ extension Line {
             .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
             .opacity(0.2)
             .transition(.opacity)
-            .animation(.easeIn(duration: 1.6))
     }
 
 	/// Get the view representing the line stroked in the `foregroundColor`
@@ -156,7 +155,6 @@ extension Line {
                     style: StrokeStyle(lineWidth: 3, lineJoin: .round))
             .rotationEffect(.degrees(180), anchor: .center)
             .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-            .animation(Animation.easeOut(duration: 1.2))
             .onAppear {
                 self.showFull = true
             }
