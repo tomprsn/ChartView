@@ -30,9 +30,9 @@ extension CGPoint {
         }
         if let min = min, let max = max, min != max {
             if min <= 0 {
-                stepHeight = (frame.size.height - padding) / CGFloat(max - min)
+                stepHeight = (frame.size.height - padding) / CGFloat(max - min) * 100
             } else {
-                stepHeight = (frame.size.height - padding) / CGFloat(max + min)
+                stepHeight = (frame.size.height - padding) / CGFloat(max + min) * 100
             }
         }
 
