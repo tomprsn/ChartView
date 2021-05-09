@@ -120,6 +120,7 @@ extension Line {
         let index = Int(round((point.x)/step.x))
         if (index >= 0 && index < self.chartData.data.count){
             self.chartValue.currentValue = self.chartData.points[index]
+            self.chartValue.currentValueWithDescription = self.chartData.data[index]
         }
     }
 

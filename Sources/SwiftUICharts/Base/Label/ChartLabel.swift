@@ -17,8 +17,8 @@ public struct ChartLabel: View {
 
     private var title: String
 
-	/// Label font size
-	/// - Returns: the font size of the label
+    /// Label font size
+    /// - Returns: the font size of the label
     private var labelSize: CGFloat {
         switch labelType {
         case .title:
@@ -34,8 +34,8 @@ public struct ChartLabel: View {
         }
     }
 
-	/// Padding around label
-	/// - Returns: the edge padding to use based on position of the label
+    /// Padding around label
+    /// - Returns: the edge padding to use based on position of the label
     private var labelPadding: EdgeInsets {
         switch labelType {
         case .title:
@@ -51,11 +51,11 @@ public struct ChartLabel: View {
         }
     }
 
-	/// Which type (color, size, position) for label
+    /// Which type (color, size, position) for label
     private let labelType: ChartLabelType
 
-	/// Foreground color for this label
-	/// - Returns: Color of label based on its `ChartLabelType`
+    /// Foreground color for this label
+    /// - Returns: Color of label based on its `ChartLabelType`
     private var labelColor: Color {
         switch labelType {
         case .title:
@@ -71,10 +71,10 @@ public struct ChartLabel: View {
         }
     }
 
-	/// Initialize
-	/// - Parameters:
-	///   - title: Any `String`
-	///   - type: Which `ChartLabelType` to use
+    /// Initialize
+    /// - Parameters:
+    ///   - title: Any `String`
+    ///   - type: Which `ChartLabelType` to use
     public init (_ title: String,
                  type: ChartLabelType = .title,
                  format: String = "%.01f") {
@@ -83,9 +83,9 @@ public struct ChartLabel: View {
         self.format = format
     }
 
-	/// The content and behavior of the `ChartLabel`.
-	///
-	/// Displays current value if chart is currently being touched along a data point, otherwise the specified text.
+    /// The content and behavior of the `ChartLabel`.
+    ///
+    /// Displays current value if chart is currently being touched along a data point, otherwise the specified text.
     public var body: some View {
         HStack {
             Text(textToDisplay)
@@ -97,7 +97,9 @@ public struct ChartLabel: View {
                     self.textToDisplay = self.title
                 }
                 .onReceive(self.chartValue.objectWillChange) { _ in
-                    self.textToDisplay = self.chartValue.interactionInProgress ? String(format: format, self.chartValue.currentValue) : self.title
+                    self.textToDisplay = self.chartValue.interactionInProgress
+                        ? self.chartValue.currentValueWithDescription.description + " - " + String(format: format, self.chartValue.currentValueWithDescription.value)
+                        : self.title
                 }
             if !self.chartValue.interactionInProgress {
                 Spacer()
